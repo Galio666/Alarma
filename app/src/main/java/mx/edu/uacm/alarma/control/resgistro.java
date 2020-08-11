@@ -1,4 +1,4 @@
-package mx.edu.uacm.alarma;
+package mx.edu.uacm.alarma.control;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import mx.edu.uacm.alarma.R;
+
 public class resgistro extends AppCompatActivity {
 
     private Button btnQr;
@@ -23,7 +25,7 @@ public class resgistro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resgistro);
         btnQr =findViewById(R.id.btnqr);
-        txt=findViewById(R.id.textView3);
+        txt=findViewById(R.id.txtPost);
         btnQr.setOnClickListener(mOnClickListener);
 
 
@@ -33,10 +35,11 @@ public class resgistro extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        IntentResult result;
+        result=IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if(result != null)
             if (result.getContents() != null){
-                txt.setText("El código qr es:\n" + result.getContents());
+                txt.setText(result.getContents());
             }else{
                 txt.setText("Error al escanear el código qr");
             }
@@ -47,7 +50,9 @@ public class resgistro extends AppCompatActivity {
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.btnqr:
-                    new IntentIntegrator(resgistro.this).initiateScan();
+                    new IntentIntegrator(resgistro.this).setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES).setBarcodeImageEnabled(true).setBeepEnabled(false).setPrompt("Coloca el codigo de tu credencial dentro del recuadro").initiateScan();
+
+
                     break;
 
 

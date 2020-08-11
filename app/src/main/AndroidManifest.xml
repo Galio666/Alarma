@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="mx.edu.uacm.alarma">
 
     <application
@@ -9,14 +10,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".resgistro"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".mx.edu.uacm.alarma.activities.SesionAbierta"></activity>
+        <activity android:name=".mx.edu.uacm.alarma.activities.LoginActivity" />
+        <activity android:name=".control.Registro_Control" />
+        <activity android:name=".control.resgistro" />
+        <activity android:name=".mx.edu.uacm.alarma.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="fullSensor"
+            tools:replace="screenOrientation" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
